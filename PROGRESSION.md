@@ -3,7 +3,7 @@
 
 ---
 
-## ÉTAT GLOBAL : 🔄 Phase 4 en cours (Phases 0-3 terminées)
+## ÉTAT GLOBAL : 🔄 Phase 8 en cours (Phases 0-7 terminées)
 
 ---
 
@@ -19,7 +19,7 @@
 - [x] Structure feature-first Flutter créée : `lib/core/`, `lib/features/auth|groups|messaging|profile/`
 - [x] `lib/core/theme.dart` — thème couleurs Burkina (vert #006B3C, rouge #EF2B2D) + palette anonymes
 - [x] `lib/core/router.dart` — GoRouter avec toutes les routes nommées + placeholders
-- [x] `lib/core/firebase_options.dart` — placeholder (à remplacer par `flutterfire configure`)
+- [x] `lib/core/firebase_options.dart` — vraies clés Firebase (projet unite226-app)
 - [x] `lib/main.dart` — réécrit avec Firebase.initializeApp + ProviderScope + MaterialApp.router
 - [x] Angular : `@angular/fire`, `@angular/material`, `@angular/cdk` installés
 - [x] Angular : structure `core/guards|services|models`, `features/auth|dashboard|groups|users|moderation`, `shared/` créée
@@ -68,62 +68,83 @@
 - [x] `MessageBubble` — bulles, réponse citée, deep link TikTok/Facebook, épinglage
 - [x] `MessageInputBar` — texte, vocal (record), image, vidéo, lien auto-détecté
 
-## 🔄 EN COURS — Phase 4 : Mode Inconnu (anonymat)
+### Phase 4 — COMPLÈTE ✅
+- [x] `anonymous_controller.dart` — toggleAnonymous, attribution atomique Inconnu N + couleur via transaction Firestore
+- [x] `anonymous_toggle.dart` — widget toggle dans l'AppBar du chat, dialog de confirmation
+- [x] Réutilisation du label existant si l'utilisateur a déjà été anonyme dans ce groupe
+
+### Phase 5 — COMPLÈTE ✅
+- [x] Cloud Functions `functions/index.js` :
+  - [x] `onUserCreated` — force role='user' à la création
+  - [x] `setGroupAdmin` — nommer admin (superadmin uniquement)
+  - [x] `kickMember` — exclure un membre (superadmin ou groupAdmin)
+  - [x] `restrictMember` — restreindre/dé-restreindre (superadmin ou groupAdmin)
+  - [x] `deleteAccount` — désactiver compte Firebase Auth (superadmin uniquement)
+  - [x] `toggleGroupWriting` — activer/désactiver écriture (superadmin uniquement)
+  - [x] `createGroup` — créer un groupe (superadmin uniquement)
+  - [x] `_logAction` — journalisation dans `moderation_logs`
+
+### Phase 6 — COMPLÈTE ✅
+- [x] `onNewMessage` Cloud Function — notification FCM sur nouveau message
+- [x] `lib/core/services/fcm_service.dart` — initialisation FCM + sauvegarde token
+
+### Phase 7 — COMPLÈTE ✅
+- [x] `AdminService` — login/logout Firebase Auth, getGroups, getUsers, getModerationLogs, getStats, toggleGroupWriting
+- [x] `LoginComponent` — formulaire email/mot de passe avec gestion d'erreur
+- [x] `DashboardComponent` — stats (users, groups) + liste groupes temps réel
+- [x] `GroupsComponent` — tableau groupes avec toggle écriture
+- [x] `UsersComponent` — tableau utilisateurs avec recherche
+- [x] `ModerationComponent` — journal des actions de modération
+- [x] `LayoutComponent` — sidenav Material avec navigation et déconnexion
+- [x] `superadmin.guard.ts` — protection des routes admin
+
+## 🔄 EN COURS — Phase 8 : Déploiement Vercel
+
+### Phase 8 — EN COURS 🔄
+- [x] Build Angular vérifié — 0 erreur (`npm run build` ✅)
+- [x] `admin-web/vercel.json` créé — outputDirectory: `dist/admin-web/browser`, rewrites SPA
+- [x] `vercel.json` poussé sur GitHub (repo: unite226-admin)
+- [ ] **PROCHAINE ÉTAPE** : Connecter le repo `unite226-admin` sur https://vercel.com/new
+  - Sélectionner le repo `unite226-admin`
+  - Root Directory : `admin-web` (si le repo contient tout le workspace) ou laisser vide si repo dédié
+  - Ajouter les variables d'environnement Firebase :
+    - `NG_APP_FIREBASE_API_KEY`
+    - `NG_APP_FIREBASE_AUTH_DOMAIN`
+    - `NG_APP_FIREBASE_PROJECT_ID`
+    - `NG_APP_FIREBASE_STORAGE_BUCKET`
+    - `NG_APP_FIREBASE_MESSAGING_SENDER_ID`
+    - `NG_APP_FIREBASE_APP_ID`
+  - Cliquer "Deploy"
+- [ ] Vérifier le déploiement Vercel (URL publique)
+- [ ] Créer le compte superadmin Firebase (email/mot de passe) via Firebase Console
+- [ ] Build Flutter Android (APK release)
 
 ---
 
-## ⏳ À FAIRE — Phases suivantes
+## ⏳ À FAIRE — Reste de la Phase 8
 
-### Phase 1 — Auth Flutter
-- [ ] Écran saisie numéro +226
-- [ ] Intégration Firebase Phone Auth + OTP
-- [ ] Écran complétion profil (nom, prénom, photo pièce d'identité, photo profil)
-- [ ] Cloud Function `onUserCreated`
+### Déploiement Vercel (panel admin)
+1. Aller sur https://vercel.com/new
+2. Importer le repo GitHub `unite226-admin`
+3. Configurer les variables d'environnement (voir ci-dessus)
+4. Déployer
 
-### Phase 2 — Liste des groupes Flutter
-- [ ] Écran liste des groupes (lecture Firestore)
-- [ ] Rejoindre un groupe
+### Compte superadmin
+- Créer un utilisateur email/mot de passe dans Firebase Console > Authentication
+- Dans Firestore, créer manuellement le document `users/{uid}` avec `{ role: "superadmin" }`
 
-### Phase 3 — Messagerie Flutter
-- [ ] Écran conversation temps réel
-- [ ] Envoi texte, vocal, image, vidéo, lien
-- [ ] Répondre à un message, épingler
-- [ ] Cache SQLite
-
-### Phase 4 — Mode Inconnu
-- [ ] Toggle anonymat par groupe
-- [ ] Cloud Function attribution atomique Inconnu N + couleur
-
-### Phase 5 — Rôles & permissions
-- [ ] Cloud Functions pour toutes les actions sensibles
-- [ ] Règles Firestore/Storage complètes
-
-### Phase 6 — Notifications FCM
-- [ ] Intégration FCM Flutter
-- [ ] Cloud Functions triggers notifications
-
-### Phase 7 — Panel admin Angular
-- [ ] Auth superadmin
-- [ ] Dashboard stats
-- [ ] Gestion groupes
-- [ ] Gestion utilisateurs
-- [ ] Modération
-
-### Phase 8 — Durcissement & déploiement
-- [ ] Revue règles sécurité
-- [ ] Pagination messages
-- [ ] CI/CD GitHub Actions
-- [ ] Déploiement Vercel panel admin
-- [ ] Build Flutter Android/iOS
+### Build Flutter Android
+- `flutter build apk --release` dans `app_messagerie_226/`
+- Nécessite un keystore de signature
 
 ---
 
 ## 📝 DÉCISIONS EN ATTENTE (à valider avec le porteur de projet)
 
 1. Légal : politique de rétention/suppression des pièces d'identité
-2. Le mode inconnu est-il par groupe ou global ? (hypothèse retenue : par groupe)
+2. Le mode inconnu est-il par groupe ou global ? ✅ Retenu : par groupe
 3. L'épinglage de message est-il réservé aux admins ou ouvert à tous ?
-4. Auth panel admin : réutiliser Firebase Phone Auth ou créer un compte email/mdp dédié ?
+4. Auth panel admin : réutiliser Firebase Phone Auth ou créer un compte email/mdp dédié ? ✅ Retenu : email/mdp
 5. Budget Firebase : plan Spark (gratuit) ou Blaze (requis pour Cloud Functions en prod) ?
 
 ---
@@ -138,6 +159,9 @@ lib/
     theme.dart
     router.dart
     firebase_options.dart
+    services/
+      cloudinary_service.dart
+      fcm_service.dart
   features/
     auth/
       screens/
