@@ -1,0 +1,119 @@
+[debug] [2026-07-22T17:54:52.845Z] ----------------------------------------------------------------------
+[debug] [2026-07-22T17:54:52.849Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:list
+[debug] [2026-07-22T17:54:52.850Z] CLI Version:   15.18.0
+[debug] [2026-07-22T17:54:52.850Z] Platform:      win32
+[debug] [2026-07-22T17:54:52.850Z] Node Version:  v24.14.1
+[debug] [2026-07-22T17:54:52.850Z] Time:          Wed Jul 22 2026 19:54:52 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-07-22T17:54:52.850Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-22T17:54:52.856Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-07-22T17:54:52.893Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-22T17:54:52.894Z] > authorizing via signed-in user (nathanaelnael99sawadogo@gmail.com)
+[debug] [2026-07-22T17:54:52.900Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:54:52.901Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:54:52.901Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-07-22T17:54:53.600Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-07-22T17:54:53.601Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-07-22T17:54:53.808Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-07-22T17:55:01.820Z] ----------------------------------------------------------------------
+[debug] [2026-07-22T17:55:01.825Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create unite226-app --display-name Unité 226
+[debug] [2026-07-22T17:55:01.825Z] CLI Version:   15.18.0
+[debug] [2026-07-22T17:55:01.826Z] Platform:      win32
+[debug] [2026-07-22T17:55:01.826Z] Node Version:  v24.14.1
+[debug] [2026-07-22T17:55:01.826Z] Time:          Wed Jul 22 2026 19:55:01 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-07-22T17:55:01.827Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-22T17:55:01.842Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-22T17:55:01.843Z] > authorizing via signed-in user (nathanaelnael99sawadogo@gmail.com)
+[debug] [2026-07-22T17:55:01.852Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:01.852Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:01.856Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-07-22T17:55:01.856Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"unite226-app","name":"Unité 226"}
+[debug] [2026-07-22T17:55:03.010Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2026-07-22T17:55:03.011Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [display_name] has issue [project display name contains invalid characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"display_name","description":"project display name contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2026-07-22T17:55:03.018Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 400, field [display_name] has issue [project display name contains invalid characters]
+    at responseToError (C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:333:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2026-07-22T17:55:11.754Z] ----------------------------------------------------------------------
+[debug] [2026-07-22T17:55:11.760Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create unite226-app --display-name Unite226
+[debug] [2026-07-22T17:55:11.760Z] CLI Version:   15.18.0
+[debug] [2026-07-22T17:55:11.760Z] Platform:      win32
+[debug] [2026-07-22T17:55:11.761Z] Node Version:  v24.14.1
+[debug] [2026-07-22T17:55:11.761Z] Time:          Wed Jul 22 2026 19:55:11 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-07-22T17:55:11.761Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-22T17:55:11.776Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-22T17:55:11.777Z] > authorizing via signed-in user (nathanaelnael99sawadogo@gmail.com)
+[debug] [2026-07-22T17:55:11.785Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:11.786Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:11.790Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-07-22T17:55:11.790Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"unite226-app","name":"Unite226"}
+[debug] [2026-07-22T17:55:13.023Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-07-22T17:55:13.023Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.8032357684058620990"}
+[debug] [2026-07-22T17:55:13.026Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:13.026Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:13.027Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 [none]
+[debug] [2026-07-22T17:55:13.752Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 200
+[debug] [2026-07-22T17:55:13.753Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 {"name":"operations/create_project.global.8032357684058620990"}
+[debug] [2026-07-22T17:55:14.264Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:14.265Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:14.265Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:14.265Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 [none]
+[debug] [2026-07-22T17:55:14.530Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 200
+[debug] [2026-07-22T17:55:14.531Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 {"name":"operations/create_project.global.8032357684058620990"}
+[debug] [2026-07-22T17:55:15.540Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:15.541Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:15.541Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:15.542Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 [none]
+[debug] [2026-07-22T17:55:15.832Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 200
+[debug] [2026-07-22T17:55:15.833Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8032357684058620990 {"name":"operations/create_project.global.8032357684058620990","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"80911235759","projectId":"unite226-app","lifecycleState":"ACTIVE","name":"Unite226","createTime":"2026-07-22T17:55:13.013Z"}}
+[debug] [2026-07-22T17:55:15.837Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:15.838Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:15.839Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/unite226-app:addFirebase [none]
+[debug] [2026-07-22T17:55:19.859Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/unite226-app:addFirebase 200
+[debug] [2026-07-22T17:55:19.859Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/unite226-app:addFirebase {"name":"operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4"}
+[debug] [2026-07-22T17:55:19.860Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:19.860Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:19.861Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 [none]
+[debug] [2026-07-22T17:55:23.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 200
+[debug] [2026-07-22T17:55:23.874Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 {"name":"operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4"}
+[debug] [2026-07-22T17:55:24.388Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:24.390Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:24.391Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:24.392Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 [none]
+[debug] [2026-07-22T17:55:25.279Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 200
+[debug] [2026-07-22T17:55:25.279Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 {"name":"operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4"}
+[debug] [2026-07-22T17:55:26.287Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:26.288Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:26.288Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:26.289Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 [none]
+[debug] [2026-07-22T17:55:27.194Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 200
+[debug] [2026-07-22T17:55:27.195Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 {"name":"operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4"}
+[debug] [2026-07-22T17:55:29.202Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:29.206Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:29.207Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:29.209Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 [none]
+[debug] [2026-07-22T17:55:29.675Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 200
+[debug] [2026-07-22T17:55:29.676Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 {"name":"operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4"}
+[debug] [2026-07-22T17:55:33.680Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2026-07-22T17:55:33.680Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:33.681Z] Checked if tokens are valid: true, expires at: 1784744643926
+[debug] [2026-07-22T17:55:33.681Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 [none]
+[debug] [2026-07-22T17:55:34.605Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZWQxMDIwMDUtNWU3ZC00OWY0LWFmZWQtOWJlN2M0NGUzOWI4 200
+[debug] [2026-07-22T17:55:56.097Z] ----------------------------------------------------------------------
+[debug] [2026-07-22T17:55:56.103Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nathanael sawadogo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js use unite226-app
+[debug] [2026-07-22T17:55:56.104Z] CLI Version:   15.18.0
+[debug] [2026-07-22T17:55:56.104Z] Platform:      win32
+[debug] [2026-07-22T17:55:56.105Z] Node Version:  v24.14.1
+[debug] [2026-07-22T17:55:56.105Z] Time:          Wed Jul 22 2026 19:55:56 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-07-22T17:55:56.105Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-22T17:55:56.122Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-22T17:55:56.123Z] > authorizing via signed-in user (nathanaelnael99sawadogo@gmail.com)
+[error] 
+[error] Error: firebase use must be run from a Firebase project directory.
+
+Run firebase init to start a project directory in the current folder.

@@ -1,0 +1,108 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Fonctions utilitaires ──────────────────────────────────────────────
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isAuth() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'superadmin';
+    }
+
+    function isGroupAdmin(groupId) {
+      return isAuth() &&
+        get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.role == 'groupAdmin';
+    }
+
+    function isMember(groupId) {
+      return isAuth() &&
+        exists(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid));
+    }
+
+    function isNotRestricted(groupId) {
+      return get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.restricted == false;
+    }
+
+    function writingEnabled(groupId) {
+      return get(/databases/$(database)/documents/groups/$(groupId)).data.writingEnabled == true;
+    }
+
+    // ── Collection users ───────────────────────────────────────────────────
+    match /users/{userId} {
+      // Lecture champs publics : tout utilisateur authentifié
+      allow read: if isAuth();
+
+      // Création : uniquement son propre document, role forcé à 'user' côté client
+      // (la Cloud Function onUserCreated crée le doc avec role:'user' — le client ne doit pas écrire role)
+      allow create: if isAuth() && request.auth.uid == userId
+        && request.resource.data.role == 'user'
+        && request.resource.data.accountStatus == 'active';
+
+      // Mise à jour : l'utilisateur peut modifier ses propres champs sauf role et accountStatus
+      allow update: if isAuth() && request.auth.uid == userId
+        && !('role' in request.resource.data.diff(resource.data).affectedKeys())
+        && !('accountStatus' in request.resource.data.diff(resource.data).affectedKeys());
+
+      // Suppression et modification du rôle : superadmin uniquement (via Cloud Function)
+      allow delete: if isSuperAdmin();
+    }
+
+    // ── Collection groups ──────────────────────────────────────────────────
+    match /groups/{groupId} {
+      // Lecture : tout utilisateur authentifié (liste des groupes visible par tous)
+      allow read: if isAuth();
+
+      // Création/suppression : superadmin uniquement
+      allow create, delete: if isSuperAdmin();
+
+      // Mise à jour : superadmin ou groupAdmin (limité)
+      allow update: if isSuperAdmin() || isGroupAdmin(groupId);
+
+      // ── Sous-collection members ──────────────────────────────────────────
+      match /members/{memberId} {
+        allow read: if isAuth();
+
+        // Rejoindre un groupe : l'utilisateur crée son propre doc membre
+        allow create: if isAuth() && request.auth.uid == memberId
+          && request.resource.data.role == 'member'
+          && request.resource.data.restricted == false;
+
+        // Modifier son propre statut anonyme uniquement
+        allow update: if isAuth() && request.auth.uid == memberId
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isAnonymous'])
+          || isSuperAdmin()
+          || isGroupAdmin(groupId);
+
+        // Exclure un membre : superadmin ou groupAdmin
+        allow delete: if isSuperAdmin() || isGroupAdmin(groupId);
+      }
+
+      // ── Sous-collection messages ─────────────────────────────────────────
+      match /messages/{messageId} {
+        allow read: if isMember(groupId);
+
+        // Écrire un message : membre, écriture activée, non restreint
+        allow create: if isMember(groupId)
+          && writingEnabled(groupId)
+          && isNotRestricted(groupId)
+          && request.resource.data.senderId == request.auth.uid;
+
+        // Épingler : superadmin ou groupAdmin uniquement
+        allow update: if isSuperAdmin() || isGroupAdmin(groupId);
+
+        // Supprimer : superadmin ou groupAdmin
+        allow delete: if isSuperAdmin() || isGroupAdmin(groupId);
+      }
+
+      // ── Sous-collection meta (compteur anonymes) ─────────────────────────
+      match /meta/{docId} {
+        allow read: if isMember(groupId);
+        // Écriture uniquement via Cloud Function (pas de règle client)
+        allow write: if false;
+      }
+    }
+  }
+}

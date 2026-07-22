@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "80911235759",
+    "project_id": "unite226-app",
+    "storage_bucket": "unite226-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80911235759:android:e0fc444fb1f827ac91725a",
+        "android_client_info": {
+          "package_name": "com.tonorganisation.app_messagerie_226"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJCh1mrYVOnY8Nn2u-_ZTgPKbkm6o3104"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
