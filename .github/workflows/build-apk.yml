@@ -32,7 +32,7 @@ jobs:
 
       - name: Build APK release
         working-directory: app_messagerie_226
-        run: flutter build apk --release --no-tree-shake-icons
+        run: flutter build apk --release --no-tree-shake-icons --verbose 2>&1 | tail -50
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
