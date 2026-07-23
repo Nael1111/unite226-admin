@@ -47,6 +47,8 @@ class AuthController extends StateNotifier<AuthState> {
     state = state.copyWith(step: AuthStep.loading);
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
+      forceResendingToken: null,
+      timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
       },
